@@ -120,6 +120,16 @@ label {
     align-items: center;
 }
 
+#day,
+#month,
+#year {
+    width: 115px;
+    height: 35px;
+    margin-left: 10px;
+    border-radius: 3px;
+    opacity: 1;
+}
+
 * {
     box-sizing: border-box;
 }
