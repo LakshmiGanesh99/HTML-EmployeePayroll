@@ -50,6 +50,13 @@ body {
     border: 0px solid green;
 }
 
+error-output {
+    font-size: 15px;
+    font-style: italic;
+    ˇ color: red;
+    margin-left: 10px;
+}
+
 .form {
     width: 65%;
     padding: 44px 60px;
