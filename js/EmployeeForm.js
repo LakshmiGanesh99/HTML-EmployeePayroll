@@ -31,6 +31,37 @@ const save = () => {
     }
 }
 
+const resetForm = () => {
+    setTextValue('#name', '');
+    unsetSelectedValues('[name=profile]');
+    unsetSelectedValues('[name=gender]');
+    unsetSelectedValues('[name=department]');
+    setValue('#salary', '');
+    setValue('#day', '1');
+    setValue('#month', 'January');
+    setValue('#year', '2020');
+    setValue('#notes', '');
+    setTextValue('.salary-output', '400000');
+    setTextValue('.text-error', '')
+}
+
+const setTextValue = (id, value) => {
+    const element = document.querySelector(id);
+    element.textContent = value
+}
+
+const setValue = (id, value) => {
+    const element = document.querySelector(id);
+    element.textContent = value
+}
+
+const unsetSelectedValues = (propertyValue) => {
+    let allItems = document.querySelector(propertyValue);
+    allItems.forEach(item => {
+        item.checked = false;
+    })
+}
+
 function createAndUpdateStorage(data) {
     let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
 
