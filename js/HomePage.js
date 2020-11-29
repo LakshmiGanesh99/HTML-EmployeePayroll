@@ -1,12 +1,21 @@
+let empPayrollList;
 window.addEventListener('DOMContentLoaded', (event) => {
+    empPayrollList = getEmployeePayrollDataFromStorage();
+    document.querySelector(".emp-count").textContent = empPayrollList.length;
     createInnerHtml();
+    localStorage.removeItem('editEmp');
 });
 
+const getEmployeePayrollDataFromStorage = () => {
+    return localStorage.getItem('EmployeePayrollList') ?
+        JSON.parse(localStorage.getItem('EmployeePayrollList')) : [];
+}
+
 const createInnerHtml = () => {
+    if (empPayrollList.length == 0) return;
     const headerHtml = " <tr><th></th><th>Name</th><th>Gender</th>" +
         "<th>Department</th><th>Salary</th><th>Start Date</th><th>Actions</th></tr>";
     let innerHtml = `${headerHtml}`;
-    let empPayrollList = createEmployeePayrollJSON();
     for (const empPayrollData of empPayrollList) {
         innerHtml = `${innerHtml}
     <tr>
@@ -34,35 +43,4 @@ const getDepHtml = (deptList) => {
         deptHtml = `${deptHtml} <div class='dept-label'>${dept}</div>`
     }
     return deptHtml;
-}
-
-const createEmployeePayrollJSON = () => {
-    let employeePayrollListLocal = [{
-            _name: 'Lakshmi Ganesh',
-            _gender: 'Male',
-            _department: [
-                'Engineering',
-                'Finance'
-            ],
-            _salary: '500000',
-            _startDate: '16 Sep 2020',
-            _note: 'Fresher',
-            _id: new Date().getTime(),
-            _profilePic: '../assets/profile-images/Ellipse -8.png'
-        },
-        {
-            _name: 'Aditi Noname',
-            _gender: 'Female',
-            _department: [
-                'HR',
-                'Sales'
-            ],
-            _salary: '400000',
-            _startDate: '28 Aug 2020',
-            _note: 'New Joining',
-            _id: new Date().getTime() + 1,
-            _profilePic: '../assets/profile-images/Ellipse -4.png'
-        }
-    ];
-    return employeePayrollListLocal;
 }
